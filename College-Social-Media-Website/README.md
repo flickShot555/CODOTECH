@@ -56,9 +56,13 @@ start index.html # Windows
 
 ## 🏗️ Project Structure
 campusconnect/
+
 ├── index.html         # Main HTML file
+
 ├── style.css          # Stylesheet
+
 ├── script.js          # JavaScript functionality
+
 └── avatar-placeholder.png  # Default user avatar
 
 ## 🌟 Future Enhancements
@@ -91,7 +95,10 @@ Contributions are welcome! Please follow these steps:
 
 ## 📧 Contact
 Abbas Khan
+
 Linkedin: https://www.linkedin.com/in/the-abbas-khan/
+
 Website: https://www.aepostrophee.kesug.com
+
 Project Link: https://github.com/flickShot555/CODOTECH/College-Social-Media-Website
 
