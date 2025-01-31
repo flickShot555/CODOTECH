@@ -1,0 +1,147 @@
+:root {
+    --primary-color: #1DA1F2;
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --border-color: #e0e0e0;
+    --card-bg: #f5f8fa;
+}
+
+[data-theme="dark"] {
+    --bg-color: #15202B;
+    --text-color: #ffffff;
+    --border-color: #38444d;
+    --card-bg: #192734;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-color);
+    z-index: 100;
+}
+
+.search-bar {
+    padding: 0.8rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    width: 400px;
+    background-color: var(--card-bg);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.sidebar {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.profile-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile-pic-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.create-post {
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.create-post textarea {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.post-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    float: right;
+}
+
+.post {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.post-content {
+    margin-bottom: 1rem;
+}
+
+.post-actions {
+    display: flex;
+    gap: 2rem;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+}

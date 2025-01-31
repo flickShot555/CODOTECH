@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1 class="logo">CampusConnect</h1>
+        </div>
+        <div class="nav-center">
+            <input type="text" class="search-bar" placeholder="Search posts or friends...">
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="theme-btn">🌓</button>
+            <img src="avatar-placeholder.png" alt="Profile" class="profile-pic">
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-card">
+                <img src="avatar-placeholder.png" alt="Profile" class="profile-pic-large">
+                <h3>John Doe</h3>
+                <p>@johndoe_cc</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span>235</span>
+                        <span>Posts</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>1.2k</span>
+                        <span>Followers</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Feed -->
+        <main class="feed">
+            <!-- Create Post -->
+            <div class="create-post">
+                <textarea placeholder="What's happening on campus?"></textarea>
+                <button class="post-btn">Post</button>
+            </div>
+
+            <!-- Posts Container -->
+            <div class="posts" id="posts-container">
+                <!-- Sample Post (will be generated via JS) -->
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="sidebar">
+            <div class="suggested-users">
+                <h3>Suggested Connections</h3>
+                <div class="user-list">
+                    <!-- Suggested users will be added via JS -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
