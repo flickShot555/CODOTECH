@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpTrack - Employee Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-users-cog"></i>
+            <h1>EmpTrack</h1>
+        </div>
+        <nav>
+            <ul class="nav-items">
+                <li class="active"><a href="#dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#employees"><i class="fas fa-user-tie"></i> Employees</a></li>
+                <li><a href="#attendance"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+                <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+        <!-- Header -->
+        <header class="header">
+            <div class="search-bar">
+                <input type="text" placeholder="Search employees...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="header-actions">
+                <button class="btn-primary" id="addEmployee">
+                    <i class="fas fa-plus"></i> Add Employee
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="dashboard-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Employees</h3>
+                    <p id="totalEmployees">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Present Today</h3>
+                    <p id="presentToday">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Overtime Hours</h3>
+                    <p id="totalOvertime">0</p>
+                </div>
+            </div>
+
+            <div class="attendance-chart">
+                <h2>Weekly Attendance</h2>
+                <canvas id="attendanceChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Employee List -->
+        <section id="employees" class="employee-list hidden">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Attendance</th>
+                        <th>Overtime</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTableBody">
+                    <!-- Dynamic content -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Add Employee Modal -->
+        <div class="modal hidden" id="employeeModal">
+            <div class="modal-content">
+                <h2>Add Employee</h2>
+                <form id="employeeForm">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Position</label>
+                        <select name="position" required>
+                            <option value="Manager">Manager</option>
+                            <option value="Team Lead">Team Lead</option>
+                            <option value="Software Developer">Software Developer</option>
+                            <option value="Intern">Intern</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Department</label>
+                        <input type="text" name="department" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hire Date</label>
+                        <input type="date" name="hireDate" required>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                        <button type="submit" class="btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</body>
+</html>

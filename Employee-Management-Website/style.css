@@ -1,0 +1,149 @@
+:root {
+    --primary-color: #2A5C82;
+    --secondary-color: #5BA4E6;
+    --background: #F5F7FA;
+    --text-dark: #2D3748;
+    --text-light: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--background);
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: var(--primary-color);
+    padding: 1.5rem;
+    color: var(--text-light);
+    position: fixed;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.logo i {
+    font-size: 2rem;
+}
+
+.nav-items {
+    list-style: none;
+}
+
+.nav-items li {
+    margin: 1rem 0;
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.nav-items li.active {
+    background: var(--secondary-color);
+}
+
+.content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 2rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.search-bar {
+    position: relative;
+    width: 400px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.employee-list table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.employee-list th,
+.employee-list td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+/**
+    Add this to your CSS
+*/
+.hidden {
+    display: none !important;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure modal appears above other content */
+}
+
+/* Add backdrop filter */
+.modal::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 500px;
+}
