@@ -4,6 +4,8 @@
 
 A modern web-based employee management system with attendance tracking and reporting features, built using HTML, CSS, and JavaScript.
 
+EmpTrack is a modern, client-side web application designed to simplify employee management. It offers a clean, intuitive interface for tracking employee attendance, overtime, and more—all without the need for any server-side scripting. Data persistence is achieved using localStorage and CSV export functionality, ensuring your records remain accessible across sessions.
+
 ## 🚀 Features
 
 - 👥 Employee database management
@@ -61,9 +63,7 @@ emptrack/
 ├── index.html         # Main interface
 ├── style.css          # Styling
 ├── script.js          # Core functionality
-└── assets/            # Additional resources
-    ├── js/            # External scripts
-    └── img/           # Application images
+└── README.md          # Readme file
 ```
 
 ## 🌟 Future Enhancements
