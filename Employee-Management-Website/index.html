@@ -114,6 +114,38 @@
                 </form>
             </div>
         </div>
+
+        <!-- Add Report Section -->
+        <section id="reports" class="hidden">
+            <div class="report-actions">
+                <button class="btn-primary" id="exportCsv">
+                    <i class="fas fa-file-csv"></i> Export to CSV
+                </button>
+                <button class="btn-primary" id="printReport">
+                    <i class="fas fa-print"></i> Print Report
+                </button>
+            </div>
+            
+            <div class="report-summary">
+                <h3>Monthly Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <span>Total Employees</span>
+                        <span id="reportTotalEmployees">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Average Attendance</span>
+                        <span id="reportAvgAttendance">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Total Overtime Hours</span>
+                        <span id="reportTotalOvertime">0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
     </main>
 
     <script src="script.js"></script>
