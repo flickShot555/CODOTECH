@@ -1,6 +1,55 @@
+let employees = [];
+
 document.addEventListener('DOMContentLoaded', () => {
-    let employees = JSON.parse(localStorage.getItem('employees')) || [];
+    const storedCSV = localStorage.getItem('employeeCSV');
+    if (storedCSV) {
+        employees = csvToEmployees(storedCSV);
+    } else {
+        employees = []; // or initialize with default data if needed
+    }
+
+    renderEmployees();
+    updateStats();
+
+    function updatePersistentData() {
+        const csvData = employeesToCSV(employees);
+        localStorage.setItem('employeeCSV', csvData);
+    }
+
+    //let employees = JSON.parse(localStorage.getItem('employees')) || [];
     
+    // Converts an array of employee objects to a CSV string.
+    function employeesToCSV(employees) {
+        if (!employees.length) return '';
+        const headers = ["id", "name", "position", "department", "hireDate", "attendance", "overtime"];
+        const csvRows = [
+            headers.join(',')
+        ];
+        employees.forEach(emp => {
+            // Create a row array by mapping headers to corresponding employee values.
+            const row = headers.map(header => emp[header] || '');
+            csvRows.push(row.join(','));
+        });
+        return csvRows.join('\n');
+    }
+
+    // Parses a CSV string to produce an array of employee objects.
+    function csvToEmployees(csvData) {
+        const lines = csvData.split('\n').filter(line => line.trim() !== '');
+        if (!lines.length) return [];
+        const headers = lines[0].split(',');
+        const employees = lines.slice(1).map(line => {
+            const values = line.split(',');
+            let employee = {};
+            headers.forEach((header, index) => {
+                employee[header.trim()] = values[index]?.trim();
+            });
+            return employee;
+        });
+        return employees;
+    }
+
+
     // Chart initialization
     const ctx = document.getElementById('attendanceChart').getContext('2d');
     const attendanceChart = new Chart(ctx, {
@@ -16,22 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Add CSV Export Functionality
-    document.getElementById('exportCsv').addEventListener('click', () =>  {
-        const csvContent = "data:text/csv;charset=utf-8," 
-            + "Name,Position,Department,Hire Date,Attendance,Overtime\n"
-            + employees.map(emp => 
-                `${emp.name},${emp.position},${emp.department},${emp.hireDate},${emp.attendance},${emp.overtime}`
-            ).join("\n");
-        
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "employees.csv");
-        document.body.appendChild(link);
-        link.click();
-    });
-
     // Implement Search Functionality
     document.querySelector('.search-bar input').addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase();
@@ -42,28 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         renderEmployees(filtered);
     });
-
-    // Enhanced Attendance Tracking
-    /**
-        function markAttendance(employeeId, days) {
-            const employee = employees.find(emp => emp.id === employeeId);
-            employee.attendance += days;
-            localStorage.setItem('employees', JSON.stringify(employees));
-            updateStats();
-            renderEmployees();
-        }
-    */
-
-    // Overtime Management
-    /**
-        function addOvertime(employeeId, hours = 1) {
-            const employee = employees.find(emp => emp.id === employeeId);
-            employee.overtime += hours;
-            localStorage.setItem('employees', JSON.stringify(employees));
-            updateStats();
-            renderEmployees();
-        }
-    */
 
     // Modal handling
     const modal = document.getElementById('employeeModal');
@@ -121,18 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
             //employee.salary = formData.get('salary');
             //employee.lastAttendance = new Date().toLocaleDateString();
             delete form.dataset.editingId;
-            /**
-             * const index = employees.findIndex(emp => emp.id === parseInt(editingId));
-            employees[index] = {
-                ...employees[index],
-                name: form.fullName.value,
-                position: form.position.value,
-                department: form.department.value,
-                hireDate: form.hireDate.value
-            };
-            delete form.dataset.editingId;
-             */
-
         } else {
             let newEmployee = {
                 id: generateID(),
@@ -152,24 +151,48 @@ document.addEventListener('DOMContentLoaded', () => {
         renderEmployees();
         updateStats();
         updateChart();
+        updatePersistentData();
+    });
+
+    document.getElementById('exportCsv').addEventListener('click', () => {
+        // Update localStorage with the latest employee data.
+        updatePersistentData();
+    
+        // Optionally, trigger a download of the CSV file.
+        const csvData = employeesToCSV(employees);
+        const blob = new Blob([csvData], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'employees.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
     });
 
     document.addEventListener('click', (e) => {
-        if(e.target.closest('.delete')) {
-            const employeeId = parseInt(e.target.closest('tr').dataset.id);
+        const deleteBtn = e.target.closest('.delete');
+        if (deleteBtn) {
+            const row = deleteBtn.closest('tr');
+            const employeeId = row.dataset.id; // using the ID as a string
             employees = employees.filter(emp => emp.id !== employeeId);
-            localStorage.setItem('employees', JSON.stringify(employees));
             renderEmployees();
             updateStats();
+            updatePersistentData(); // Save updated data to localStorage
         }
     });
 
     document.addEventListener('click', (e) => {
-        if(e.target.closest('.edit')) {
-            const employeeId = parseInt(e.target.closest('tr').dataset.id);
-            const employee = employees.find(emp => emp.id === employeeId);
-            openEditModal(employee);
-        }
+        const editBtn = e.target.closest('.edit');
+            if (editBtn) {
+                const row = editBtn.closest('tr');
+                const employeeId = row.dataset.id; // Using the ID as a string directly
+                const employee = employees.find(emp => emp.id === employeeId);
+                if (employee) {
+                    openEditModal(employee);
+                }
+            }
+            updatePersistentData();
     });
 
     function openEditModal(employee) {
@@ -228,21 +251,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add event listeners for attendance/overtime
     document.addEventListener('click', (e) => {
-        const employeeId = parseInt(e.target.closest('button')?.dataset?.id);
-        if(!employeeId) return;
-
-        if(e.target.closest('.add-attendance')) {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        const employeeId = btn.dataset.id;
+        if (!employeeId) return;
+        
+        if (btn.classList.contains('add-attendance')) {
             updateAttendance(employeeId, 1);
-        }
-        else if(e.target.closest('.remove-attendance')) {
+        } else if (btn.classList.contains('remove-attendance')) {
             updateAttendance(employeeId, -1);
-        }
-        else if(e.target.closest('.add-overtime')) {
+        } else if (btn.classList.contains('add-overtime')) {
             updateOvertime(employeeId, 1);
-        }
-        else if(e.target.closest('.remove-overtime')) {
+        } else if (btn.classList.contains('remove-overtime')) {
             updateOvertime(employeeId, -1);
-        }
+        } 
     });
 
     function updateAttendance(id, value) {
@@ -264,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateStats();
         renderEmployees();
         updateChart();
+        updatePersistentData();
     }
 
     // Update dashboard stats
@@ -282,9 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
             (presentToday / employees.length || 0).toFixed(1);
         document.getElementById('reportTotalOvertime').textContent = totalOvertime;
     }
-
-    // Update chart initialization
-    //let attendance_Chart;
 
     // Initialize chart with empty data first
     function initChart() {
