@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="images/${product.image}" alt="${product.name}">
                 <div class="product-info">
                     <h3>${product.name}</h3>
-                    <p>₹${product.price}</p>
+                    <p>Rs. ${product.price}</p>
                     <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
                 </div>
             `;
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cartItem.innerHTML = `
                 <div>
                     <h4>${item.name}</h4>
-                    <p>₹${item.price} x ${item.quantity}</p>
+                    <p>Rs. ${item.price} x ${item.quantity}</p>
                 </div>
                 <div>
                     <button class="remove-item" data-id="${item.id}">Remove</button>
@@ -94,6 +94,19 @@ document.addEventListener('DOMContentLoaded', () => {
             cart = cart.filter(item => item.id !== productId);
             updateCartStorage();
         }
+
+        //add eventlisteners for buttons that load the products.
+        if(e.target.classList.contains('filter-btn')) {
+            // Remove 'active' class from all filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            // Add 'active' class to the clicked button
+            e.target.classList.add('active');
+            
+            // Use the correct dataset property, 'filter'
+            const filter = e.target.dataset.filter;
+            renderProducts(filter);
+        }
+        
     });
 
     // Form Handling
@@ -121,14 +134,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial Render
     renderProducts();
     renderCartItems();
+
+    function updateCartCount() {
+        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('cartCount').textContent = count;
+    }
+    
+    function updateCartTotal() {
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        document.getElementById('cartTotal').textContent = total;
+    }
 });
 
-function updateCartCount() {
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById('cartCount').textContent = count;
-}
-
-function updateCartTotal() {
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    document.getElementById('cartTotal').textContent = total;
-}
