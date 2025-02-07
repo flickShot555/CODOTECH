@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenGrowth Fertilizers</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/logo.jpg" alt="GreenGrowth Logo" class="logo-image">
+            <h1>GreenGrowth</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Premium Agricultural Solutions</h2>
+            <p>Boost your crop yield with our organic fertilizers</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <h2>Our Products</h2>
+        <div class="product-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="organic">Organic</button>
+            <button class="filter-btn" data-filter="inorganic">Inorganic</button>
+        </div>
+        <div class="products-grid" id="productsContainer">
+            <!-- Product cards will be inserted here -->
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" class="cart-section hidden">
+        <h2>Your Cart</h2>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be inserted here -->
+        </div>
+        <div class="cart-summary">
+            <h3>Total: Rs<span id="cartTotal">0</span></h3>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section hidden">
+        <div class="about-content">
+            <h2>About GreenGrowth</h2>
+            <p>20 years of agricultural expertise</p>
+            <!-- Add more content -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section hidden">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 GreenGrowth. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
