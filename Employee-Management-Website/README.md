@@ -1,6 +1,6 @@
 # EmpTrack - Employee Management System
 
-![EmpTrack Preview](preview.png)
+![EmpTrack Preview](preview.PNG)
 
 A modern web-based employee management system with attendance tracking and reporting features, built using HTML, CSS, and JavaScript.
 
