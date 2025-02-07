@@ -1,6 +1,6 @@
 # GreenGrowth Fertilizers -E-Commerce Website
 
-![GreenGrowth Preview](preview.png)
+![GreenGrowth Preview](preview.PNG)
 
 A modern, fully functional e-commerce website for a fertilizer shop, built with HTML, CSS, and JavaScript. This project showcases a clean and organized layout with complete frontend-backend integration using localStorage.
 
