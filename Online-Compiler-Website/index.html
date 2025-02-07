@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aepostrophee - Online Compiler</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-code"></i>
+            <h1>Aepostrophee</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#compiler">Compiler</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Compile & Run Code Anytime, Anywhere</h2>
+            <p>Supports Python, JavaScript, and more!</p>
+        </div>
+    </section>
+
+    <!-- Compiler Section -->
+    <section id="compiler" class="compiler-section">
+        <h2>Online Compiler</h2>
+        <div class="compiler-container">
+            <div class="code-editor">
+                <textarea id="codeInput" placeholder="Enter your code here..."></textarea>
+            </div>
+            <div class="compiler-controls">
+                <select id="languageSelect">
+                    <option value="python">Python</option>
+                    <option value="javascript">JavaScript</option>
+                </select>
+                <button id="runCode">Run Code</button>
+            </div>
+            <div class="output-container">
+                <h3>Output</h3>
+                <pre id="output"></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <h2>About Aepostrophee</h2>
+        <p>Aepostrophee is a solution point where IT solutions are provided, including <span>Online Compilers</span>, 
+            <span>Web Development</span>, <span>Mobile App Development</span> and <span>Pre-built ML Models</span>.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Aepostrophee. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
